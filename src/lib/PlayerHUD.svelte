@@ -19,7 +19,11 @@
             { nome: "Kant", pontos: 200, posicao: 4 },
             { nome: "MartinzDev", pontos: 150, posicao: 20 }
         ]
-    }
+    };
+
+    // Ordena os jogadores por posição (ou pontuação, se preferir)
+    $: jogadoresOrdenados = [...tabelaDeLider.jogadores].sort((a, b) => a.posicao - b.posicao);
+
     const tabelaDeMorte = [
         { jogadorQueMatou: "MartinzDev", jogadorQueMorreu: "Floki", arma: "Pistola" },
         { jogadorQueMatou: "Rodrigues", jogadorQueMorreu: "Sampaio", arma: "Faca" },
@@ -31,7 +35,7 @@
 
 <div class="w-full h-full flex HUD">
     <div class="absolute top-[30px] left-[30px] tabelaDeLider">
-        {#each tabelaDeLider.jogadores as jogador, index}
+        {#each jogadoresOrdenados as jogador, index}
             <div class="flex justify-between items-center bg-gradient-to-r from-[#0F0E0A] to-[#0F0E0A]/0 p-2 m-1 font-bold gap-2 border-l-2">
                 <span>{jogador.posicao}</span>
                 <span>{jogador.nome}</span>
