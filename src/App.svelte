@@ -3,7 +3,7 @@
 </script>
 
 <main
-  class="flex justify-center items-center w-full bg-black text-white h-screen"
+  class="flex justify-center items-center w-full bg-[#2E2B24] text-white h-screen font-[poppins]"
 >
  <PlayerHud/>
  
