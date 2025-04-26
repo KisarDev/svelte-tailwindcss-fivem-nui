@@ -1,6 +1,6 @@
 <script>
     const jogador = {
-        vida: 100,
+        vida: 30,
         colete: 50,
         inventario: {
             armas: [
@@ -29,15 +29,61 @@
     ]
 </script>
 
-<div class="w-full h-full flex">
-    <div>
+<div class="w-full h-full flex HUD">
+    <div class="absolute top-[30px] left-[30px] tabelaDeLider">
         {#each tabelaDeLider.jogadores as jogador, index}
-            <div class="flex justify-between items-center bg-gray-800 p-2 m-1 rounded">
+            <div class="flex justify-between items-center bg-gradient-to-r from-[#0F0E0A] to-[#0F0E0A]/0 p-2 m-1 font-bold gap-2 border-l-2">
                 <span>{jogador.posicao}</span>
                 <span>{jogador.nome}</span>
                 <span>{jogador.pontos}</span>
             </div>
         {/each}
+
+    </div>
+
+
+    <div class="absolute top-[30px] right-[30px] tabelaDeMorte">
+        {#each tabelaDeMorte as morte, index}
+            <div class="flex justify-between items-center bg-gray-800 p-2 m-1 rounded gap-2 ">
+                <span>{morte.jogadorQueMatou}</span>
+                <span>{morte.arma}</span>
+                <span>{morte.jogadorQueMorreu}</span>
+            </div>
+        {/each}
+
+    </div>
+
+    <div class="absolute bottom-[30px] left-[30px]  p-4 rounded flex flex-col w-[200px]">
+        <div class="flex flex-row justify-center items-center gap-2">
+            <h2 class="text-lg font-bold ">{jogador.vida}</h2>
+            <div class="w-full h-4 bg-[#727272] overflow-hidden">
+            <div
+                class="h-full bg-[#FF5252] transition-all duration-300"
+                style="width: {jogador.vida}%"
+            ></div>
+            </div>
+        </div>
+        <div class="flex flex-row justify-center items-center gap-2">
+            <h2 class="text-lg font-bold ">{jogador.colete}</h2>
+            <div class="w-full h-4 bg-[#727272] overflow-hidden">
+            <div
+                class="h-full bg-[#FFFFFF] transition-all duration-300"
+                style="width: {jogador.colete}%"
+            ></div>
+            </div>
+        </div>
+      </div>
+
+    <div class="absolute bottom-[30px] right-[30px] inventario">
+        <div class="flex flex-col gap-2 bg-gray-800 p-2 rounded">
+            <h1 class="text-xl">Inventário</h1>
+            {#each jogador.inventario.armas as arma, index}
+                <div class="flex justify-between items-center bg-gray-700 p-2 m-1 rounded gap-2 ">
+                    <span>{arma.nome}</span>
+                    <span>{arma.dano}</span>
+                </div>
+            {/each}
+        </div>
 
     </div>
 </div>
