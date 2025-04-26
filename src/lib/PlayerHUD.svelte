@@ -1,4 +1,5 @@
 <script>
+    import armaSvg from '/public/img/arma.png';
     const jogador = {
         vida: 30,
         colete: 50,
@@ -48,14 +49,16 @@
 
     <div class="absolute top-[30px] right-[30px] tabelaDeMorte">
         {#each tabelaDeMorte as morte, index}
-            <div class="flex justify-between items-center bg-gray-800 p-2 m-1 rounded gap-2 ">
-                <span>{morte.jogadorQueMatou}</span>
-                <span>{morte.arma}</span>
-                <span>{morte.jogadorQueMorreu}</span>
-            </div>
+          <div
+            class="flex justify-between items-center p-2 m-1 rounded gap-2"
+            style="background: linear-gradient(to left, {index % 2 === 0 ? '#22110C' : '#16150F'}, transparent);"
+          >
+            <span class="text-white font-bold">{morte.jogadorQueMatou}</span>
+            <img src={armaSvg} alt="">
+            <span class="text-white font-bold">{morte.jogadorQueMorreu}</span>
+          </div>
         {/each}
-
-    </div>
+      </div>
 
     <div class="absolute bottom-[30px] left-[30px]  p-4 rounded flex flex-col w-[200px]">
         <div class="flex flex-row justify-center items-center gap-2">
