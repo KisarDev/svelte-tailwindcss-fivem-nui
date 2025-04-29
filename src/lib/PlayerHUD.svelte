@@ -1,6 +1,6 @@
 <script>
     import armaSvg from '/public/img/arma.png';
-    const jogador = {
+    let jogador = {
         vida: 30,
         colete: 50,
         inventario: {
@@ -32,6 +32,14 @@
         { jogadorQueMatou: "Floki", jogadorQueMorreu: "Rodrigues", arma: "Faca" },
         { jogadorQueMatou: "Sampaio", jogadorQueMorreu: "Kant", arma: "Pistola" }
     ]
+
+    // Fazer uma função que recebe um jogador e altera o valor da vida e do colete do jogador, baseado em outro valor que recebe como parâmetro
+    function alterarHp(jogadorAtual, valor) {
+        jogadorAtual.vida = valor;
+        jogadorAtual.colete = valor;
+        jogador = { ...jogadorAtual };
+    }
+
 </script>
 
 <div class="w-full h-full flex HUD">
@@ -93,4 +101,22 @@
         </div>
 
     </div>
+
+
+    <div class="slider-container absolute top-[50%] left-[50%]">
+        <label for="slider" class="text-white font-bold">Vida e colete: <span id="vida-value"></span></label>
+        <input
+          id="slider"
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          class="slider"
+          on:input={(event) => {
+            if (!event.target.value) return;
+            const valor = event.target.value;
+            alterarHp(jogador, valor);
+          }}
+        />
+      </div>
 </div>
